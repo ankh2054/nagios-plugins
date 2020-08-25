@@ -57,6 +57,13 @@ Each function performs a particular action and EXITS with 0 if there are no issu
 `check_bp.py  x.x.x.x:8888 check_lib`
 
 
+#####  (5) Check whether producer is paused
+
+
+###### Usage for check_head
+`check_bp.py  x.x.x.x:8888 check_paused
+
+
 ####  📌 check_producing.sh
 
 * Checks the producer list and records your unpaid_blocks integer an saves to a file.
