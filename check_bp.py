@@ -8,7 +8,8 @@ import random
 import statistics
 
 URLS = {
-    'get_info': 'http://{host}/v1/chain/get_info'
+    'get_info': 'http://{host}/v1/chain/get_info',
+    'paused':   'http://{host}/v1/producer/paused'
 }
 
 HOSTS = ['eosgreen.uk.to:8889','ctestnet.eosio.se:8887','54.194.49.21:8833','superhero.cryptolions.io:8897','venom.eoscalgary.com:80','ctestnet.eosdetroit.com:8889','superheroes.eosio.africa:8888']
@@ -84,6 +85,15 @@ def check_head_has_incremented(host, delay=7):
         return (0, 'OK')
     return (2, 'Head block number not incremented after delay')
 
+def check_bp_paused(host):
+    url = URLS['paused'].format(host=host)
+    status = requests.post(url, verify=False).json()
+    print(status)
+    if status == True:
+        return (0, 'Producer is paused')
+    else:
+        return (2, 'Producer is not paused')
+
 def check_lib_has_incremented(host, delay=10):
     url = URLS['get_info'].format(host=host)
     fst = requests.get(url, verify=False).json()
@@ -97,7 +107,8 @@ ALLOWED_FUNCTIONS = {
     'check_ratio': check_ratio,
     'check_head': check_head_has_incremented,
     'check_lib': check_lib_has_incremented,
-    'check_fork' : check_head_average_comparison
+    'check_fork' : check_head_average_comparison,
+    'check_paused' : check_bp_paused
 }
 
 parser = argparse.ArgumentParser(description='chain info checker')
