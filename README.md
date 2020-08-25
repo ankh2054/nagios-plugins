@@ -15,18 +15,8 @@ Each function performs a particular action and EXITS with 0 if there are no issu
 
 
 
-#####  (1) Check the participation rate of your block producer 
 
-* Checks your host has a participation rate of more than 0.5.
-* EXITS with 0 if participation rate > 5.
-* EXITS with 2 if participation rate < 5.
-
-###### Usage for check_ratio
-`check_bp.py  x.x.x.x:8888 check_ratio`
-
-
-
-#####  (2) Check the head_block_num of your producer is incrementing 
+#####  (1) Check the head_block_num of your producer is incrementing 
 
 * Checks your host's head_block_num and saves that as a varaible, waits 5 secodns and checks again.
 * EXITS with 0 if head_block_num has incremented. 
@@ -35,29 +25,7 @@ Each function performs a particular action and EXITS with 0 if there are no issu
 ###### Usage for check_head
 `check_bp.py  x.x.x.x:8888 check_head`
 
-
-
-#####  (3) Check multiple hosts and saves the head_block_num, take the median average and checks against your host.
-
-* Check multiple hosts and saves the head_block_num, takes the median average. If any hosts has a head_block_num value where absolute difference from the median is > 1,000 they are excluded from the calc.
-* EXITS with 0 if head_block_num has incremented. 
-* EXITS with 2 if head_block_num difference is out of bounds(> abs(5) of average)
-
-###### Usage for check_fork
-`check_bp.py  x.x.x.x:8888 check_fork`
-
-
-#####  (4) Check the last_irreversible_block_num of the chain is incrementing 
-
-* Checks your host's last_irreversible_block_num and saves that as a varaible, waits 10 secodns and checks again.
-* EXITS with 0 if last_irreversible_block_num has incremented. 
-* EXITS with 2 if last_irreversible_block_num has not incremented. 
-
-###### Usage for check_lib
-`check_bp.py  x.x.x.x:8888 check_lib`
-
-
-#####  (5) Check whether producer is paused
+#####  (2) Check whether producer is paused
 
 
 ###### Usage for check_head
